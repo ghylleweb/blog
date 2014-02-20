@@ -1,13 +1,43 @@
-from fabric.api import lcd, local
+from fabric.api import lcd, local, env, require
+import os
+
+production_server = os.environ['PRODUCTION_SERVER']
 
 
-def prepare_deployment(branch_name):
-    local('git commit')
+def prod():
+    env.hosts = [production_server]
+    env.remote_app_dir = '~/webapps/blog/repo'
+    env.remote_apache_dir = '~/webapps/blog/apache2'
+
+
+def restart():
+    """Restart apache on the server."""
+    require('hosts', provided_by=[prod])
+    require('remote_apache_dir', provided_by=[prod])
+
+    run("%s/bin/restart" % env.remote_apache_dir)
+
+
+def commit(branch_name):
+    message = raw_input("Enter a git commit message:  ")
+    local("git add -A && git commit -m \"%s\"" % message)
+    local("git push origin %s" % branch_name)
+
+    print "Changes pushed to %s..." % branch_name
+
+
+def collectstatic():
+    require('hosts', provided_by=[prod])
+    run("cd %s; python2.7 manage.py collectstatic --noinput" % env.remote_app_dir)
 
 
 def deploy():
-    with lcd('/path/to/prod/area'):
-        local('git pull /path/to/dev/area')
+    require('hosts', provided_by=[prod])
+    require('remote_app_dir', provided_by=[prod])
 
-        local('python manage.py migrate')
-        local('/path/to/restart/server')
+    # First lets commit changes to github
+    commit("master")
+    # Now lets pull the changes to the server
+    run("cd %s; git pull git@github.com:jghyllebert/blog.git" % env.remote_app_dir)
+    # And lastly update static media files
+    collectstatic()
