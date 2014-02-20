@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test: apis</title>
+</head>
+<body>
+{% for tweet in data %}
+    {% if forloop.first %}{{ tweet }}<br />{% endif %}
+{% endfor %}
+</body>
+</html>

@@ -1,12 +1,16 @@
 from django.conf.urls import patterns, include, url
-
 from django.contrib import admin
+from filebrowser.sites import site
+from posts.views import BlogPostList
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'blog.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-
+    url(r'^$', BlogPostList.as_view(), name='home'),
+    url(r'^admin/filebrowser/', include(site.urls)),
+    url(r'^admin/ckeditor/', include('ckeditor.urls')),
+    url(r'^grapelli/', include('grappelli.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^apis/', include('apis.urls')),
+    url(r'^blog/', include('posts.urls')),
 )

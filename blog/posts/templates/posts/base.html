@@ -1,0 +1,87 @@
+{% load staticfiles %}
+{% url 'home' as home_url %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Jonas Ghyllebert &bull; An ongoing Journey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static "assets/css/bootstrap.min.css" %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static "assets/css/bootstrap-responsive.min.css" %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static "assets/css/font-awesome.min.css" %}" rel="stylesheet" type="text/css"/>
+
+    <link href="{% static "assets/css/style.css" %}" rel="stylesheet"/>
+    {% block css %}{% endblock css %}
+
+</head>
+<body>
+{% block facebook_code %}
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=480419205327888";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+{% endblock facebook_code %}
+<!-- MAIN CONTAINER -->
+<div class="container-fluid">
+    <div class="row-fluid">
+        <!-- LEFT FIXED SIDE BAR -->
+        <div class="span3">
+            <div class="sidebar-nav-fixed affix">
+
+                <div class="card hovercard">
+
+                    <img src="{% static "assets/img/b-cover.jpg" %}" alt="image avatar"/>
+
+                    <div class="avatar">
+                        {% if request.get_full_path == home_url %}
+                            <img src="{% static "assets/img/logo.png" %}" alt="image avatar"/>
+                        {% else %}
+                            <a href="{{ home_url }}"><img src="{% static "assets/img/logo.png" %}" alt="image avatar"/></a>
+                        {% endif %}
+                    </div>
+                    <div class="info">
+                        <div class="title">
+                            <h2>Jonas Ghyllebert</h2>
+
+                        <div class="desc">
+                            24 year old Belgian living and working in Mexico.<br />
+                            #Programming #Cycling
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- LEFT FIXED SIDE BAR ENDS -->
+        <!-- RIGHT BLOG CONTENT CONTAINER -->
+        <div class="span9">
+            {% block main_content %}{% endblock %}
+        </div>
+        <!-- RIGHT BLOG CONTENT CONTAINER ENDS -->
+    </div>
+</div>
+<!-- MAIN CONTAINER END -->
+
+<script src="{% static "assets/js/jquery.js " %}"></script>
+
+<script src="{% static "assets/js/bootstrap.min.js " %}"></script>
+<script src="{% static "assets/js/holder.js " %}"></script>
+<script src="{% static "assets/js/jquery.nicescroll.min.js " %}"></script>
+<script src="{% static "assets/js/application.js " %}"></script>
+<!-- Place this tag after the last +1 button tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'nl'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/platform.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+{% block javascript_body %}{% endblock javascript_body %}
+</body>
+</html>

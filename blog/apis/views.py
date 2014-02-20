@@ -1,3 +1,5 @@
-from django.shortcuts import render
+__author__ = 'jghyllebert'
 
-# Create your views here.
+
+def get_all_social_media(request):
+    pass

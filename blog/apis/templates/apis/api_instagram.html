@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<ul>
+{% for media in content %}
+<li><img src="{{ media.images.standard_resolution.url }}">
+    {{ media.caption.text }}</li>
+{% endfor %}
+</ul>
+</body>
+</html>

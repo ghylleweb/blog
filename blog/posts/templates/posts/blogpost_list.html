@@ -1,0 +1,11 @@
+{% extends 'posts/base.html' %}
+{% load staticfiles post_tags %}
+
+
+{% block main_content %}
+
+    {% for post in posts %}
+        {% post_detail post %}
+    {% endfor %}
+
+{% endblock main_content %}
