@@ -14,3 +14,5 @@ DATABASES = {
 }
 
 WSGI_APPLICATION = 'blog.prod_wsgi.application'
+
+STATIC_ROOT = "/home/ghyllebert/webapps/blog/repo/blog/static/"
