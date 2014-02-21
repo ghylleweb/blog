@@ -18,11 +18,12 @@
                 {% if context.request.get_full_path != post.get_absolute_url %}
                 <a href="{{ post.get_absolute_url }}" class="btn">Read more</a>
                 {% endif %}
-
-                <div class="pull-right">
-                    <div class="g-plusone" data-size="standard"></div>
-                    <div class="fb-share-button" data-href="http://ghyllebert.be/{{ post.get_absolute_url }}"
-                         data-type="button_count"></div>
+                <div class="social pull-right">
+                <span class="facebook"><div class="fb-share-button" data-href="http://ghyllebert.be/{{ post.get_absolute_url }}"
+                     data-type="button_count"></div></span>
+                <span class="google"><div class="g-plusone" data-size="medium"></div></span>
+                <span class="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-via="jghyllebert">Tweet</a>
+</span>
                 </div>
             </div>
 
