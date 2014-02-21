@@ -43,4 +43,4 @@ def deploy():
     # Now lets pull the changes to the server
     run("cd %s; git pull git@github.com:jghyllebert/blog.git" % env.remote_app_dir)
     # And lastly update static media files
-    collectstatic()
+    #collectstatic()
