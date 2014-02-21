@@ -10,6 +10,7 @@ def prod():
     env.remote_app_dir = '~/webapps/blog/repo/blog/'
     env.remote_apache_dir = '~/webapps/blog/apache2/'
     env.remote_virtual_env = '~/webapps/blog/bin/'
+    env.remote_repo_env = '~/webapps/blog/repo/'
 
 
 def restart():
@@ -41,6 +42,6 @@ def deploy():
     # First lets commit changes to github
     commit("master")
     # Now lets pull the changes to the server
-    run("cd %s; git pull git@github.com:jghyllebert/blog.git" % env.remote_app_dir)
+    run("cd %s; git pull git@github.com:jghyllebert/blog.git" % env.remote_repo_dir)
     # And lastly update static media files
     #collectstatic()
