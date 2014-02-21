@@ -1,4 +1,4 @@
-from fabric.api import lcd, local, env, require, run
+from fabric.api import lcd, local, env, require, run, prefix
 import os
 
 production_server = os.environ['PRODUCTION_SERVER']
@@ -16,7 +16,7 @@ def restart():
     require('hosts', provided_by=[prod])
     require('remote_apache_dir', provided_by=[prod])
 
-    run("%s/bin/restart" % env.remote_apache_dir)
+    run("%sbin/restart" % env.remote_apache_dir)
 
 
 def commit(branch_name):
@@ -29,8 +29,8 @@ def commit(branch_name):
 
 def collectstatic():
     require('hosts', provided_by=[prod])
-    run("cd %s; source .activate" % env.remote_virtual_env)
-    run("cd %s; python manage.py collectstatic --noinput" % env.remote_app_dir)
+    with prefix("cd %s; source .activate" % env.remote_virtual_env):
+        run("cd %s; python manage.py collectstatic --noinput" % env.remote_app_dir)
 
 
 def deploy():
