@@ -8,6 +8,7 @@ def prod():
     env.hosts = [production_server]
     env.remote_app_dir = '~/webapps/blog/repo/blog/'
     env.remote_apache_dir = '~/webapps/blog/apache2/'
+    env.remote_virtual_env = '~/webapps/blog/bin/'
 
 
 def restart():
@@ -28,6 +29,7 @@ def commit(branch_name):
 
 def collectstatic():
     require('hosts', provided_by=[prod])
+    run("cd %s; source .activate" % env.remote_virtual_env)
     run("cd %s; python manage.py collectstatic --noinput" % env.remote_app_dir)
 
 
