@@ -2,7 +2,7 @@ from .base import *
 
 DEBUG = False
 TEMPLATE_DEBUG = False
-ALLOWED_HOSTS = ['.ghyllebert.be', '.ghyllebert.be.']
+ALLOWED_HOSTS = ['http://ghyllebert.be']
 
 DATABASES = {
     'default': {
