@@ -20,16 +20,8 @@ BASE_DIR = Path(__file__).ancestor(3)
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-TEMPLATE_DEBUG = True
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
-
 INSTALLED_APPS = (
     'grappelli',
     'filebrowser',
@@ -57,8 +49,6 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'blog.urls'
 
-WSGI_APPLICATION = 'blog.wsgi.application'
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -78,6 +68,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+STATIC_ROOT = BASE_DIR.child("static")
+CKEDITOR_UPLOAD_PATH = BASE_DIR.child("media")
 
 #AppDirectoriesFinder must be first for grappelli
 STATICFILES_FINDERS = (

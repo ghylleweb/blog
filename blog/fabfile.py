@@ -1,4 +1,4 @@
-from fabric.api import lcd, local, env, require
+from fabric.api import lcd, local, env, require, run
 import os
 
 production_server = os.environ['PRODUCTION_SERVER']
@@ -28,7 +28,7 @@ def commit(branch_name):
 
 def collectstatic():
     require('hosts', provided_by=[prod])
-    run("cd %s; python2.7 manage.py collectstatic --noinput" % env.remote_app_dir)
+    run("cd %s; python manage.py collectstatic --noinput" % env.remote_app_dir)
 
 
 def deploy():

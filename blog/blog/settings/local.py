@@ -11,15 +11,12 @@ DATABASES = {
     }
 }
 
+DEBUG = True
+TEMPLATE_DEBUG = True
 
 #localhost base url
 BASE_URL = "http://localhost:10000"
 
-
-STATIC_ROOT = BASE_DIR.child("static")
-
-CKEDITOR_UPLOAD_PATH = BASE_DIR.child("media")
+WSGI_APPLICATION = 'blog.wsgi.application'
 
 INSTALLED_APPS += ('debug_toolbar',)
-
-GUNICORN_PORT = 10000
