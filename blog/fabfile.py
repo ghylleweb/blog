@@ -6,8 +6,8 @@ production_server = os.environ['PRODUCTION_SERVER']
 
 def prod():
     env.hosts = [production_server]
-    env.remote_app_dir = '~/webapps/blog/repo'
-    env.remote_apache_dir = '~/webapps/blog/apache2'
+    env.remote_app_dir = '~/webapps/blog/repo/blog/'
+    env.remote_apache_dir = '~/webapps/blog/apache2/'
 
 
 def restart():
