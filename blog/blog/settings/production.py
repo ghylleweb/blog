@@ -1,8 +1,8 @@
 from .base import *
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = False
-ALLOWED_HOSTS = ['.ghyllebert.be', '.ghyllebert.be.']
+ALLOWED_HOSTS = ['*']
 
 DATABASES = {
     'default': {
