@@ -10,7 +10,7 @@ def prod():
     env.remote_app_dir = '~/webapps/blog/repo/blog/'
     env.remote_apache_dir = '~/webapps/blog/apache2/'
     env.remote_virtual_env = '~/webapps/blog/bin/'
-    env.remote_repo_env = '~/webapps/blog/repo/'
+    env.remote_repo_dir = '~/webapps/blog/repo/'
 
 
 def restart():
