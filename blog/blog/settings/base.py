@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'south',
     'reversion',
     'ckeditor',
+    'blog',
 )
 
 MIDDLEWARE_CLASSES = (
