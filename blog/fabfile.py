@@ -1,5 +1,4 @@
-from fabric.api import lcd, local, env, require, run, prefix
-from contextlib import contextmanager as _contextmanager
+from fabric.api import lcd, local, env, require, run
 
 import os
 
@@ -31,8 +30,8 @@ def commit(branch_name):
 
 def collectstatic():
     require('hosts', provided_by=[prod])
-    with prefix("cd %s; source activate" % env.remote_virtual_env):
-        run("cd %s; python manage.py collectstatic --noinput" % env.remote_app_dir)
+    run("cd %s; source activate" % env.remote_virtual_env)
+    run("cd %s; python manage.py collectstatic --noinput" % env.remote_app_dir)
 
 
 def deploy():
